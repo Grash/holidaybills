@@ -1,0 +1,103 @@
+@CHARSET "ISO-8859-1";
+body {
+	background-color: black;
+	color: white;
+	width: 480px;
+	height: 800px;
+}
+
+.appHeader {
+	text-align: center;
+	height: 100px
+}
+
+.menuItem {
+	height: 100px;
+	text-align: center;
+	font-size: 28px;
+}
+
+.menuItem a{
+	text-decoration: none;
+	color: white;
+}
+
+.newTripPage {
+	text-align: left;
+	padding: 0px 0px 0px 30px; 
+}
+
+#appAnimateContainer .view-animate-container{
+	height: 600px!important;
+	position: relative;
+  background: black;
+  color: white;
+  overflow: hidden;
+}
+
+.participant {
+	padding: 0% 0% 0% 10%;
+}
+
+#tripForm {
+	height: 80%;
+}
+
+.addBillFormContainer {
+	height: 300px
+}
+
+.openTripHeaderLine {
+	text-align: center;
+}
+
+/*.openTripPageMenuButton {
+	width: 33%
+}*/
+.ownerContainer {
+	float: left;
+}
+
+/* .otherParticipantContainer  { */
+/*   float: left; */
+/* } */
+
+.amountInput {
+	width: 50px;
+}
+
+.saveBillButton {
+}
+
+.availableTripButtonContainer{
+	text-align: center;
+}
+
+.availableTripButton{
+	font-size: 22px;
+}
+
+.portfolioInfographicPlotArea {
+  height: 493px;
+}
+
+.portfolioInfographicPlotArea .rn-carousel-slide {
+  width: 99.6%;
+}
+
+.portfolioInfographicSlide {
+  height: 493px;
+  width: 100%;
+}
+
+/* .currentStatusTable tr{ */
+/* 	width: 300px; */
+/* } */
+
+.currentStatusTable th{
+  width: 150px;
+}
+
+.currentStatusTable td{
+  text-align: center;
+}

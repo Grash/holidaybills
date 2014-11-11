@@ -18,8 +18,8 @@ require.config({
 require(['thirdparty-libs'], function () {
         require(['angular-modules'], function () {
             require(['main-module'], function() {
-                require(['tripbill-modules'], function () {
-                    angular.bootstrap(document, ['tripBill']); //manually bootstrap angular, on Dom ready
+                require(['holidaybills-modules'], function () {
+                    angular.bootstrap(document, ['holidaybills']); //manually bootstrap angular, on Dom ready
                 });
             });
         });

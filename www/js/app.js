@@ -1,4 +1,4 @@
-  var trip = angular.module('tripBill', [
+  var trip = angular.module('holidaybills', [
     'ngRoute',
     'ngAnimate',
     'ngTouch',
@@ -7,12 +7,12 @@
   trip.config(['$routeProvider', '$locationProvider',
       function($routeProvider, $locationProvider) {
         console.log("route");
-//        $routeProvider
-//          .when('/', {
-//              templateUrl: 'menu.html',
-//              controller: 'MenuCtrl',
-//              controllerAs: 'menu'
-//          })
+        $routeProvider
+          .when('/', {
+              templateUrl: 'template/menu.html',
+              controller: 'MenuCtrl',
+              controllerAs: 'menu'
+            })
 //          .when('/new', {
 //              templateUrl: 'newTrip.html',
 //              controller: 'NewTripCtrl',

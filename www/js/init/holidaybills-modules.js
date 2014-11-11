@@ -3,7 +3,7 @@
  */
 
 define([  
-//    '../controller/menuController',
+    '../controller/menuController',
 //	'../controller/newTripController',
 //	'../controller/availableTripsController',
 //	'../controller/openTripController',
@@ -12,7 +12,7 @@ define([
 //	'../directive/listBillsDirective',
 //	'../directive/openBillDirective',
 //	'../directive/currentStatusDirective',
-//	'../service/tripService',
-//	'../dataFactory/tripFactory'
+    '../service/tripService',
+    '../dataFactory/tripFactory'
 ], function() {
 });

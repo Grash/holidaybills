@@ -1,5 +1,5 @@
   var trip = angular.module('holidaybills');
-  trip.controller('MenuCtrl', ['$scope','$routeParams', 'tripService', 'tripFactory', function($scope, $routeParams, tripService, tripFactory) {
+  trip.controller('MenuCtrl', ['$scope','$routeParams', 'tripService', 'tripFactory', '$location', function($scope, $routeParams, tripService, tripFactory, $location) {
       this.isBrowser = function(){
           var ua = navigator.userAgent;
           var droid =  Boolean(ua.match(/android/i));
@@ -17,6 +17,18 @@
           console.log(id);
           alert("Mock data added");
       };
+      
+      this.newTripButtonClick = function(){
+          $location.url("/new");
+//          if (!$rootScope.$$phase) {
+//              $rootScope.$apply(function(){           
+//                  $location.path(articleUrl);
+//              });
+//          } else {
+//              $location.url(articleUrl);
+//          }
+          console.log("NEW TRIP");
+      }
       
       
     }]);

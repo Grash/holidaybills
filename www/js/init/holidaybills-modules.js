@@ -4,10 +4,10 @@
 
 define([  
     '../controller/menuController',
-//	'../controller/newTripController',
+    '../controller/newTripController',
 //	'../controller/availableTripsController',
 //	'../controller/openTripController',
-//	'../directive/newTripFormDirective',
+    '../directive/newTripFormDirective',
 //	'../directive/addBillFormDirective',
 //	'../directive/listBillsDirective',
 //	'../directive/openBillDirective',

@@ -1,7 +1,7 @@
   <div>
     <div class="menuItem">
 <!--       <a id="newTripButton" href="#/new">New Trip</a> -->
-      <button id="newtripButton" class="menuButton">New Trip</button>
+      <button id="newtripButton" class="menuButton" ng-click="menu.newTripButtonClick()">New Trip</button>
     </div>
     <div class="menuItem">
 <!--       <a id="availableTripButton" href="#/trips">Available Trips</a> -->
@@ -12,6 +12,6 @@
     </div>
     <div class="menuItem">
 <!--       <a id="mockDataButton" ng-show="menu.test" ng-click="menu.initMockData()">Mock</a> -->
-      <button id="mockDataButton" class="menuButton">Mock</button>
+      <button id="mockDataButton" class="menuButton" ng-click="menu.initMockData()">Mock</button>
     </div>
   </div>

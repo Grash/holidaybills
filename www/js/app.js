@@ -15,11 +15,11 @@
               controller: 'MenuCtrl',
               controllerAs: 'menu'
             })
-//          .when('/new', {
-//              templateUrl: 'newTrip.html',
-//              controller: 'NewTripCtrl',
-//              controllerAs: 'newTrip'
-//          })
+          .when('/new', {
+              templateUrl: 'template/newTrip.html',
+              controller: 'NewTripCtrl',
+              controllerAs: 'newTrip'
+          })
 //          .when('/trip/:tripId', {
 //              templateUrl: 'openTrip.html',
 //              controller: 'OpenTripCtrl',

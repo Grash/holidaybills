@@ -1,0 +1,18 @@
+<div id="newTripFormContainer">
+  <div id="tripForm">
+    Trip name: <input type="text" ng-model="tripName" required>
+    <span id="tripNameNotUniqueError" style="color:red" ng-show="tripNameNotUnique">Not Unique</span>
+    <span style="color:red" ng-show="myForm.user.$error.required">Username is required.</span>
+    <br/>
+    Participants:<br/>
+    <div class="participant" ng-repeat="participant in participantList">
+      <div>Name: <input type="text" class="participantName" ng-model="participant.name">
+        <span ng-show="participant.required">Required</span>
+      </div><br/>
+    </div>
+    <button id="addParticipantButton" ng-click="addParticipant()">+</button>
+  </div>
+  <div id="formActions">
+    <button id="saveButton" ng-click="saveTrip()">Save</button>
+  </div>
+</div>

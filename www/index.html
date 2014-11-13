@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Holiday Bill</title>
 	<link href="css/animations.css" rel="stylesheet" type="text/css">
   <link href="css/app.css" rel="stylesheet" type="text/css">
@@ -11,13 +12,16 @@
   
 </head>
 <body >
-<div class="appHeader">
-<h1>HOLIDAY BILLS</h1>
-</div>
-<div id="appAnimateContainer">
+<div id="appBody" ng-class="{browserBody: browser}">
+  <div class="appHeader">
+    <h1>HOLIDAY BILLS</h1>
+  </div>
+  
+  <div id="appContainer">
     <div  class="view-container">
       <div ng-view></div>
     </div>
   </div>
+</div>
 </body>
 </html>

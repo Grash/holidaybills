@@ -22,9 +22,7 @@ body {
 	}
 
 .menuItem {
-/*   height: 100px; */
   height: 4em;
-/*    width: 50%;  */
   text-align: center;
   font-size: 28px;
 }
@@ -34,4 +32,41 @@ body {
 	width: 50%;
 	margin-top: 3em;
 	font-weight: bold;
+}
+
+#newTripFormContainer{
+	padding-left: 5%;
+}
+
+.tripNameContainer{
+	padding-bottom: 5%;
+}
+
+.participantHeader{
+	padding-bottom: 5%;
+}
+
+.participantsListContainer{
+	padding-left: 8%;
+}
+
+.participantName{
+	width: 50%;
+}
+
+#tripForm{
+	height: 24em;
+}
+
+#newTripFormActions{
+	height: 4em;
+}
+
+#newTripSaveButton{
+	position: absolute;
+	top: 92%;
+	left: 75%;
+	width: 5em;
+	height: 2em;
+	font-size: 14px;
 }

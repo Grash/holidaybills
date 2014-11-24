@@ -6,13 +6,15 @@ define([
     '../controller/menuController',
     '../controller/newTripController',
 //	'../controller/availableTripsController',
-//	'../controller/openTripController',
+    '../controller/openTripController',
     '../directive/newTripFormDirective',
 //	'../directive/addBillFormDirective',
 //	'../directive/listBillsDirective',
 //	'../directive/openBillDirective',
 //	'../directive/currentStatusDirective',
     '../service/tripService',
+    '../service/databaseService',
+    '../service/validator',
     '../dataFactory/tripFactory'
 ], function() {
 });

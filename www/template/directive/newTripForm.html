@@ -1,21 +1,24 @@
 <div id="newTripFormContainer">
   <div id="tripForm">
     <div class="tripNameContainer">
-      Trip name: <input type="text" ng-model="tripName" required>
-      <span id="tripNameNotUniqueError" style="color:red" ng-show="tripNameNotUnique">Not Unique</span>
-      <span style="color:red" ng-show="myForm.user.$error.required">Username is required.</span>
+      Trip name: <input type="text" ng-model="form.tripName.value" required>
+      <span id="tripNameEmptyError" style="color:red" ng-show="form.tripName.empty">Field is empty</span>
+      <span id="tripNameNotUniqueError" style="color:red" ng-show="form.tripName.notUnique">Trip name not unique</span>
     </div>
     <br/>
     <div class="participantHeader">
       <span>Participants:</span>
     </div>
     <div class="participantsListContainer">
-      <div class="participant" ng-repeat="participant in participantList">
+      <div class="participant" ng-repeat="participant in form.participantList">
         <div>Name: <input type="text" class="participantName" ng-model="participant.name">
-          <span ng-show="participant.required">Required</span>
+          <span ng-show="participant.empty" style="color:red">Required</span>
+          <span ng-show="participant.notUnique" style="color:red">Not unique</span>
         </div><br/>
       </div>
+      <span ng-show="form.error.notEnoughName" style="color:red">Two name at least required</span>
     </div>
+    
     <button id="addParticipantButton" ng-click="addParticipant()">+</button>
   </div>
   <div id="newTripFormActions">

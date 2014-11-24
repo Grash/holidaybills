@@ -1,5 +1,5 @@
   var trip = angular.module('holidaybills');
-  trip.factory('tripService', function() {
+  trip.factory('tripService', [ 'databaseService', function(databaseService) {
       var tripService = {};
       var id = 0;
       
@@ -9,6 +9,7 @@
           trip.id = id++;
           trip.bills = [];
           tripService.tripList.push(trip);
+          databaseService.testDataSave();
           return trip.id;
       };
       
@@ -43,4 +44,4 @@
       
       
       return tripService;
-    });
+    }]);

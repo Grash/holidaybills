@@ -3,7 +3,39 @@ var trip = angular.module('holidaybills');
 trip.factory('tripFactory', function(){
     var factory = {};
     
-    factory.createNewTrip = function(tripName, tripParticipants){
+    var getParticipants = function(participantList){
+        var participants = [];
+        for(var i = 0; i < participantList.length; i++){
+            participants.push(participantList[i].name);
+        }
+        return participants;
+    }
+    
+    factory.createNewTripFromForm = function(form){
+        var trip = {
+            name: form.tripName.value,
+            participants: getParticipants(form.participantList),
+            bills: [],
+            id: 0,
+            setId: function(tripId){
+                    this.id = tripId;
+                },
+            };
+        trip.getBillByName = function(billName){
+            var bill;
+            for(var i = 0; i < trip.bills.length; i++){
+                if(trip.bills[i].name == billName){
+                    bill = trip.bills[i];
+                    return bill;
+                }
+            }
+            return null;
+        };
+                
+        return trip;
+    };
+    
+    factory.createNewMockTrip = function(tripName, tripParticipants){
         var trip = {
             name: tripName,
             participants: tripParticipants,

@@ -20,17 +20,17 @@
               controller: 'NewTripCtrl',
               controllerAs: 'newTrip'
           })
-//          .when('/trip/:tripId', {
-//              templateUrl: 'openTrip.html',
-//              controller: 'OpenTripCtrl',
-//              controllerAs: 'openTrip'
-//          })
+          .when('/trip/:tripId', {
+              templateUrl: 'template/openTrip.html',
+              controller: 'OpenTripCtrl',
+              controllerAs: 'openTrip'
+          })
 //          .when('/trips', {
 //              templateUrl: 'availableTrips.html',
 //              controller: 'AvailableTripsCtrl',
 //              controllerAs: 'availableTrips'
 //          })
-//          ;
+          ;
 
         // configure html5 to get links working on jsfiddle
         //$locationProvider.html5Mode(true);

@@ -1,13 +1,14 @@
   var trip = angular.module('holidaybills');
-  trip.controller('MenuCtrl', ['$scope','$routeParams', 'tripService', 'tripFactory', '$location', function($scope, $routeParams, tripService, tripFactory, $location) {
+  trip.controller('MenuCtrl', ['$scope','$routeParams', 'tripService', 'tripFactory', '$location', 'databaseService',function($scope, $routeParams, tripService, tripFactory, $location, databaseService) {
       this.isBrowser = function(){
           var ua = navigator.userAgent;
           var droid =  Boolean(ua.match(/android/i));
           var returnValue = !droid && (typeof (document.ontouchstart) == 'undefined');
-          console.log("Return value: ", returnValue);
+//          console.log("Return value: ", returnValue);
           return returnValue;
       };
-      console.log("HOME");
+//      console.log("HOME");
+      databaseService.initDatabase();
       this.test = true;
       $scope.$parent.browser = this.isBrowser();
       $scope.$parent.test = "" + window.screen.availWidth + ":"+window.screen.availHeight;
@@ -16,7 +17,7 @@
           var mockTrip = tripFactory.createNewMockTrip("Italy", [{name: "Andras", balance: 0}, {name: "Bela", balance: 0}]);
           
           var id = tripService.registerTrip(mockTrip);
-          console.log(id);
+//          console.log(id);
           alert("Mock data added");
       };
       
@@ -29,7 +30,11 @@
 //          } else {
 //              $location.url(articleUrl);
 //          }
-          console.log("NEW TRIP");
+//          console.log("NEW TRIP");
+      }
+      
+      this.resetDatabase = function(){
+          databaseService.resetDb();
       }
       
       

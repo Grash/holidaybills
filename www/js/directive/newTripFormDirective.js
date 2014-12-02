@@ -1,5 +1,5 @@
 var trip = angular.module('holidaybills');
-  trip.directive('newTripForm', ['tripService', 'validator', '$location', 'tripFactory', function(tripService, validator, $location, tripFactory) {
+  trip.directive('newTripForm', ['tripService', 'validator', '$location', 'tripFactory', '$rootScope', function(tripService, validator, $location, tripFactory, $rootScope) {
       this.createParticipant = function(){
           var participant = {
                   name: "",
@@ -21,7 +21,6 @@ var trip = angular.module('holidaybills');
       };
       
       this.createFormObject = function(){
-          console.log("create");
           var form = {
                   tripName: {
                       value: "",
@@ -48,22 +47,18 @@ var trip = angular.module('holidaybills');
       }
       
       this.isValid = function(form){
-          console.log("trip name: ", form.tripName.value);
           if(form.tripName.value != "" && form.tripName.value != undefined){
               form.tripName.notUnique = !tripService.tripNameIsUnique(form.tripName.value);
           } else {
               form.tripName.empty = true;
-              console.log("Empty trip name");
           }
           
           var uniqueNames = false;
           
           if(validator.checkMinimumName(form.participantList)){
               uniqueNames = validator.checkUniqueParticipantNames(form.participantList);
-              console.log(uniqueNames, form.participantList);
           } else {
               form.error.notEnoughName = true;
-              console.log("checkMinimumName false");
           }
           
           return !form.tripName.notUnique && !form.tripName.empty && uniqueNames;
@@ -74,7 +69,6 @@ var trip = angular.module('holidaybills');
           templateUrl: 'template/directive/newTripForm.html',
           link: function postLink(scope, element, attrs) {
               scope.form = createFormObject();
-              console.log(scope.form);
               
               scope.addParticipant = function() {
                   if(canAddNewParticipant(scope.form.participantList)){
@@ -82,17 +76,23 @@ var trip = angular.module('holidaybills');
                   }                  
               };
               
+              scope.tripId = 0;
+              var unregister = scope.$watch(function(){return scope.tripId;}, function (newValue, oldValue) {
+                  console.log("NEW VALUE: ", newValue, oldValue);
+                  if(newValue != undefined && newValue != oldValue){
+                      unregister();
+                      $location.url("/trip/"+newValue);
+                  }
+              });
+              
               scope.saveTrip = function() {
+                  console.log("tripid: ", scope.tripId);
                   resetFormErrors(scope.form);
                   if(isValid(scope.form)){
                       var trip = tripFactory.createNewTripFromForm(scope.form);
-                      console.log("TRIP: ", trip);
-                      var tripId = tripService.registerTrip(trip);
-                      $location.path("/trip/"+tripId);
+                      tripService.registerTrip(trip, scope);
                   }
               };
-              
-              //scope.saveTrip =  saveTrip;
           }
         };
     }]);

@@ -6,9 +6,9 @@
     ]);
   trip.config(['$routeProvider', '$locationProvider',
       function($routeProvider, $locationProvider) {
-        console.log("route");
+//        console.log("route");
         var ua = navigator.userAgent;
-        console.log("agent: ", ua);
+//        console.log("agent: ", ua);
         $routeProvider
           .when('/', {
               templateUrl: 'template/menu.html',

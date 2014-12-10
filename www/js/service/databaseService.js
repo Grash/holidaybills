@@ -2,7 +2,7 @@
   trip.factory('databaseService', function() {
       var databaseService = {};
       
-      var db = window.openDatabase("holiday_bills_db", "1.0", "HolidayBills Database", 100000);
+      var db = typeof(window.openDatabase)=='undefined' ? undefined : window.openDatabase("holiday_bills_db", "1.0", "HolidayBills Database", 100000);
 
       function populateDB(tx) {
           //tx.executeSql('DROP TABLE IF EXISTS TEST');
@@ -54,7 +54,7 @@
           , function() {
               transactionSuccess = true;
               console.log("SAVE PARTICIPANTS SUCCESSFULL");
-              rFunc(lastId);
+              callback(lastId);
               return transactionSuccess;
               
           });
@@ -93,6 +93,7 @@
      
      databaseService.resetDb = function(){
          db.transaction(deleteTables, errorCB);
+         databaseService.initDatabase();
      };
      
      databaseService.saveTrip = function(trip, returnFunction){

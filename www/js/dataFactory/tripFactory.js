@@ -9,7 +9,7 @@ trip.factory('tripFactory', function(){
             participants.push(participantList[i].name);
         }
         return participants;
-    }
+    };
     
     factory.createNewTripFromForm = function(form){
         var trip = {

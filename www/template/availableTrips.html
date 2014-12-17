@@ -1,0 +1,30 @@
+  <div>
+<!--     <div class="availableTripButtonContainer" ng-repeat="trip in availableTrips.trips"> -->
+<!--      <button class="availableTripButton" ng-click="availableTrips.openTrip(trip.id)">{{trip.name}}</button><br/> -->
+<!--     </div> -->
+<!--     <div class="cardContainer"> -->
+<!--       <div class="availableTripCard firstCard"> -->
+<!--         <img alt="asd" src="img/test.jpg" class="cardImg"> -->
+<!--       </div> -->
+<!--       <h2><span>ASDASDASD</span></h2> -->
+<!--     </div> -->
+    <div class="cardContainer">
+      <div ng-repeat="card in availableTrips.cards">
+        <trip-loading-card firstCard="{{$even}}" card="card" active="false"></trip-loading-card>
+      </div>
+<!--     <trip-loading-card firstCard="true"></trip-loading-card> -->
+<!--     <trip-loading-card></trip-loading-card> -->
+<!--     <trip-loading-card firstCard="true"></trip-loading-card> -->
+<!--     <trip-loading-card></trip-loading-card> -->
+    </div>
+<!--     <div class="availableTripCard " ng-click="availableTrips.animation()"> -->
+<!--       <img alt="asd" src="img/test.jpg" class="cardImg"> -->
+<!--     </div> -->
+<!--     <div class="availableTripCard firstCard"> -->
+<!--       <img alt="asd" src="img/test.jpg" class="cardImg"> -->
+      
+<!--     </div> -->
+<!--     <div class="availableTripCard "> -->
+<!--       <img alt="asd" src="img/test.jpg" class="cardImg"> -->
+<!--     </div> -->
+  </div>

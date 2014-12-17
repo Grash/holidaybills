@@ -29,6 +29,10 @@
           $location.url("/new");
       };
       
+      this.availableTripButtonClick = function(){
+          $location.url("/trips");
+      };
+      
       this.resetDatabase = function(){
           databaseService.resetDb();
       };

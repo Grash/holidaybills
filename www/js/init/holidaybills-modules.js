@@ -5,9 +5,10 @@
 define([  
     '../controller/menuController',
     '../controller/newTripController',
-//	'../controller/availableTripsController',
+    '../controller/availableTripsController',
     '../controller/openTripController',
     '../directive/newTripFormDirective',
+    '../directive/tripLoadingCardDirective',
 //	'../directive/addBillFormDirective',
 //	'../directive/listBillsDirective',
 //	'../directive/openBillDirective',

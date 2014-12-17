@@ -25,11 +25,11 @@
               controller: 'OpenTripCtrl',
               controllerAs: 'openTrip'
           })
-//          .when('/trips', {
-//              templateUrl: 'availableTrips.html',
-//              controller: 'AvailableTripsCtrl',
-//              controllerAs: 'availableTrips'
-//          })
+          .when('/trips', {
+              templateUrl: 'template/availableTrips.html',
+              controller: 'AvailableTripsCtrl',
+              controllerAs: 'availableTrips'
+          })
           ;
 
         // configure html5 to get links working on jsfiddle

@@ -9,6 +9,7 @@ var trip = angular.module('holidaybills');
           },
           templateUrl: 'template/directive/tripLoadingCard.html',
           link: function postLink(scope, element, attr) {
+              scope.emptySlot = !(typeof scope.card === 'object');
               console.log("Part", scope.card.participants);
 //              console.log("CARD", scope.card);
               if(attr.firstcard != null && attr.firstcard == "true"){

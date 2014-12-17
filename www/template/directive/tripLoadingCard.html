@@ -1,11 +1,18 @@
  <div class="cardContainer">
       <div class="availableTripCard cardImg" ng-click="cardSelect()">
         <div class="tripText ng-hide">
-          <p class="tripName">{{card.tripName}}</p>
-          <div ng-repeat="participant in card.participants">
-            <span>{{participant}}</span>
+          <div ng-show="!emptySlot">
+            <p class="tripName">{{card.tripName}}</p>
+            <div ng-repeat="participant in card.participants">
+              <span>{{participant}}</span>
+            </div>
+            <button class="tripOpenButton" ng-click="openTrip()">Open</button>
           </div>
-          <button class="tripOpenButton" ng-click="openTrip()">Open</button>
+          <div ng-show="emptySlot" class="emptySlot">
+            <p>EMPTY</p>
+            <p>SLOT</p>
+          </div>
+          
           
         </div>
         

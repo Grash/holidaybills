@@ -2,7 +2,7 @@
     'ngRoute',
     'ngAnimate',
     'ngTouch',
-    'angularcarousel'
+    'angular-carousel'
     ]);
   trip.config(['$routeProvider', '$locationProvider',
       function($routeProvider, $locationProvider) {

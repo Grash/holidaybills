@@ -152,8 +152,14 @@ body {
 }
 
 .tripText{
+	opacity: 1;
 	width: 100%;
 	text-align: center;
+	-webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .tripName{
@@ -165,9 +171,17 @@ body {
   top: 4em;
 }
 
+.tripText.hideCardText{
+  opacity: 0;
+}
+
 .emptySlot{
   position: relative;
   top: 1.5em;
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.carouselUl{
+  list-style-type: none;
 }

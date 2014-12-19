@@ -38,6 +38,17 @@
       var trips = tripService.getTrips();
       console.log("TRIPS: ", trips);
       this.cards = createModelDataFromTrips(trips);
+      
+      this.next = function(){
+          console.log("NEXT");
+          this.carouselIndex += 1;
+      }
+      
+      $scope.slides = [
+                       {
+                           id: 1
+                       }
+                       ];
       /*this.openTrip = function(tripId){
           console.log("OpenTrip");
           $location.path("/trip/"+tripId);

@@ -11,59 +11,65 @@ var trip = angular.module('holidaybills');
               scope.trip = scope.$parent.openTrip.trip;
               console.log("TRIP: ", scope.trip);
               var optionList = ["(none)"];
-              var addOptionListWatcher = function(target, elem){
-                  scope.$watch(target, function (newdata, olddata) {
-                      console.log("WATCH");
-                      if(newdata != olddata){
-                          /*if('' != olddata && '(none)' != olddata){
-                              for(var i = 0; i < scope.owners.length; i++){
-                                  scope.owners[i].optionList.push(olddata);
-                              }
-                              for(var j = 0; j < scope.others.length; j++){
-                                  scope.others[j].optionList.push(olddata);
-                              }
-                          }*/
-                      }
-                      /*if('(none)' != newdata){
-                          /*for(var i = 0; i < owners.length; i++){
-                              for(var ol = 0; ol < owners[i].optionList.length; ol++){
-                                  if(owners[i].optionList[ol] == newdata){
-                                      
-                                  }
-                              }
-                          }*/
-                          /*for(var j = 0; j < scope.others.length; j++){
-                              for(var ol = 0; ol < scope.others[j].optionList.length; ol++){
-                                  if(scope.others[j].optionList[ol] == newdata){
-                                      scope.others[j].optionList.splice(ol,1);
-                                  }
-                              }
-                          }
-                      }*/
-                  });
-              };
               var copyOptionList = function(originalList){
                   var optionList = [];
                   for(var i = 0; i < originalList.length; i++){
                       optionList.push(originalList[i]);
                   }
                   return optionList;
-              }
+              };
               for(var i = 0; i < scope.trip.participants.length; i++){
                   optionList.push(scope.trip.participants[i].name);
               }
               var initBill = function(){
                   scope.bill = tripFactory.createNewBill();
-                  scope.owners = [{name: '', amount: 0, optionList: [], id: selectorId}];
+                  scope.owners = [{name: '', amount: 0, share: 0, optionList: [], id: selectorId}];
                   scope.owners[0].optionList = copyOptionList(optionList);
                   selectorId++;
-                  addOptionListWatcher('owners[0].name', element);
-                  scope.others = [{name: '', optionList: [], id: selectorId}];
+                  scope.others = [{name: '', share: 0, optionList: [], id: selectorId}];
                   scope.others[0].optionList = copyOptionList(optionList);
                   selectorId++;
-                  addOptionListWatcher('others[0].name', element);
               };
               initBill();
+              
+              var isDifferentData = function(oldData, newData){
+                  return oldData != newData && newData != "{{owner.name}} {{owner.id}}" && newData.split(" ")[0].length != 0;
+              };
+              
+              var restoreOldValue = function(oldValue){
+                var oldName = oldValue.split(" ")[0];
+                if(oldName.length != 0 && oldName != "(none)"){
+                    for(var k = 0; k < scope.owners.length; k++){
+                        if(scope.owners[k].optionList.indexOf(oldName) == -1){
+                            scope.owners[k].optionList.push(oldName);
+                        }
+                    }
+                    for(var j = 0; j < scope.others.length; j++){
+                        if(scope.others[j].optionList.indexOf(oldName) == -1){
+                            scope.others[j].optionList.push(oldName);
+                        }
+                    }
+                }
+              };
+              
+              var removeNewValue = function(newValue){
+                  var newName = newValue.split(" ")[0];
+                  var newId = newValue.split(" ")[1];
+                  if('(none)' != newName){
+                      for(var l = 0; l < scope.owners.length; l++){
+                          if(scope.owners[l].id != newId){
+                              var index = scope.owners[l].optionList.indexOf(newName);
+                              scope.owners[l].optionList.splice(index,1);
+                          }
+                      }
+                      for(var m = 0; m < scope.others.length; m++){
+                          if(scope.others[m].id != newId){
+                              var index = scope.others[m].optionList.indexOf(newName);
+                              scope.others[m].optionList.splice(index,1);
+                          }
+                      }
+                  }
+              }
               
               scope.$watch(function(){
                       var values = "";
@@ -80,36 +86,9 @@ var trip = angular.module('holidaybills');
                           var newDataArray = newdata.split("/");
                           var oldDataArray = olddata.split("/");
                           for(var i = 0; i < oldDataArray.length; i++){
-                              if(oldDataArray[i] != newDataArray[i] && newDataArray[i] != "{{owner.name}} {{owner.id}}" && newDataArray[i].split(" ")[0].length != 0){
-                                  var oldName = oldDataArray[i].split(" ")[0];
-                                  if(oldDataArray[i].split(" ")[0].length != 0 && oldDataArray[i].split(" ")[0] != "(none)"){
-                                      for(var k = 0; k < scope.owners.length; k++){
-                                          if(scope.owners[k].optionList.indexOf(oldName) == -1){
-                                              scope.owners[k].optionList.push(oldName);
-                                          }
-                                      }
-                                      for(var j = 0; j < scope.others.length; j++){
-                                          if(scope.others[j].optionList.indexOf(oldName) == -1){
-                                              scope.others[j].optionList.push(oldName);
-                                          }
-                                      }
-                                  }
-                                  var newName = newDataArray[i].split(" ")[0];
-                                  var newId = newDataArray[i].split(" ")[1];
-                                  if('(none)' != newName){
-                                      for(var l = 0; l < scope.owners.length; l++){
-                                          if(scope.owners[l].id != newId){
-                                              var index = scope.owners[l].optionList.indexOf(newName);
-                                              scope.owners[l].optionList.splice(index,1);
-                                          }
-                                      }
-                                      for(var m = 0; m < scope.others.length; m++){
-                                          if(scope.others[m].id != newId){
-                                              var index = scope.others[m].optionList.indexOf(newName);
-                                              scope.others[m].optionList.splice(index,1);
-                                          }
-                                      }
-                                  }
+                              if(isDifferentData(oldDataArray[i], newDataArray[i])){
+                                  restoreOldValue(oldDataArray[i]);
+                                  removeNewValue(newDataArray[i]);
                               }
                           }
                       }
@@ -119,7 +98,7 @@ var trip = angular.module('holidaybills');
               
               scope.addOwner = function(){
                   if(scope.owners.length < optionList.length-1){
-                      scope.owners.push({name: '', amount: 0, optionList: [], id: selectorId});
+                      scope.owners.push({name: '', amount: 0, share: 0, optionList: [], id: selectorId});
                       var oList = copyOptionList(optionList);
                       scope.owners[scope.owners.length-1].optionList = removeUnnecessaryOptionItems(oList);
                       selectorId++;
@@ -127,7 +106,7 @@ var trip = angular.module('holidaybills');
               };
               scope.addOther = function(){
                   if(scope.others.length < optionList.length-1){
-                      scope.others.push({name: '', optionList: [], id: selectorId});
+                      scope.others.push({name: '', share: 0, optionList: [], id: selectorId});
                       var oList = copyOptionList(optionList);
                       scope.others[scope.others.length-1].optionList = removeUnnecessaryOptionItems(optionList);
                       selectorId++;
@@ -173,14 +152,14 @@ var trip = angular.module('holidaybills');
                   };
                   
                   for(var ot = 0; ot < others.length; ot++){
-                      for(j = 0; j < participants.length; j++){
+                      for(var j = 0; j < participants.length; j++){
                           if(participants[j].name == others[ot].name){
                               participants[j].balance -= unit;
                           }
                       }
                   }
                   
-              }
+              };
               
               scope.saveBill = function(){
                   var sum = 0;
@@ -190,10 +169,17 @@ var trip = angular.module('holidaybills');
                       }
                   }
                   
+                  
                   if(sum > 0 && isValid(scope.bill)){
                       removeUnnecessaryElements(scope.owners);
                       removeUnnecessaryElements(scope.others);
                       partNumber = scope.owners.length + scope.others.length;
+                      for(var j = 0; j < scope.others.length; i++){
+                          if(scope.others[j].share != "" && Number(scope.others[j].share) != 0){
+                              sum -= Number(scope.others[j].share);
+                              partNumber--;
+                          }
+                      }
                       setBalance(scope.trip.participants, scope.owners, scope.others, sum/partNumber);
                       scope.bill.sum = sum;
                       scope.bill.owners = scope.owners;
@@ -202,7 +188,7 @@ var trip = angular.module('holidaybills');
                       initBill();
                       scope.$parent.openTrip.changeSubPage(1);
                   }
-              }
+              };
           }
         };
     }]);

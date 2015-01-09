@@ -8,18 +8,21 @@
   </div>
   <div class="addBillFormParticipantsContainer">
     <div class="ownerFormContainer">
+      <div class="ownerLabel"><span>Owner(s)</span></div>
       <div class="ownersContainer">
-        <span class="ownerLabel">Owner(s)</span><span class="amountLabel">Amount</span><br/>
+        <span class="ownerNameLabel">Name</span><span class="amountLabel">Amount</span><span class="ownerShareLabel">Share</span><br/>
         <div ng-repeat="owner in owners">
           <select ng-model="owner.name" actual-select="{{owner.name}} {{owner.id}}" ng-options="o as o for o in owner.optionList" class="ownerSelect"></select>
-          <input ng-model="owner.amount" class="amountInput"></input><br>
+          <input ng-model="owner.amount" class="amountInput"></input>
+          <input ng-model="owner.share" class="shareInput"></input><br>
         </div>
       </div>
       <button id="addOwnerButton" ng-click="addOwner()">+</button>
     </div>
     <div class="otherParticipantContainer">
+      <span class="othersLabel">Other(s)</span>
       <div class="othersContainer">
-        <span class="othersLabel">Other(s)</span><span class="shareLabel">Share</span><br/>
+        <span class="othersNameLabel">Name</span><span class="shareLabel">Share</span><br/>
         <div ng-repeat="other in others">
           <select ng-model="other.name" actual-select="{{other.name}} {{other.id}}" ng-options="o for o in other.optionList" class="otherSelect"></select>
           <input ng-model="other.share" class="shareInput"></input><br>

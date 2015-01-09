@@ -1,0 +1,194 @@
+@CHARSET "ISO-8859-1";
+
+.openTripHeaderLine{
+  text-align: center;
+  -webkit-margin-before: 0em;
+}
+
+.openTripNavigation{
+/*   height:24px; */
+  height: 1.5em;
+  overflow:hidden;
+  }
+.openTripNavigation ul{
+  margin:0;
+  padding:0px;
+  width:100%;
+  height: 1.5em;
+/*   -moz-box-shadow:inset 0 0px 2px #999; */
+/*   -webkit-box-shadow:inset 0 2px 2px #999; */
+/*   box-shadow:inset 0 0px 2px #999; */
+/*   background:#bbb; */
+  }
+.openTripNavigation li{
+  list-style:none;
+  float:left;
+  height:1.5em;
+  line-height:1.5em;
+  -moz-box-shadow:0 0 3px #888;
+  -webkit-box-shadow:0 0 3px #888;
+  box-shadow:0 0 3px #888;
+  -webkit-border-top-right-radius:3px;
+  -webkit-border-top-left-radius:3px;
+  -moz-border-radius-topright:3px;
+  -moz-border-radius-topleft:3px;
+  border-top-right-radius:3px;
+  border-top-left-radius:3px;
+  margin:0 3px;
+  width:31%;
+  overflow:hidden;
+  position:relative;
+  background:#ccc;
+  background:-webkit-gradient(linear, left top, left bottom, from(#ccc), to(#aaa));
+  background:-moz-linear-gradient(top,  #ccc,  #aaa);
+  }
+.openTripNavigation li a, .openTripNavigation li a:visited, .openTripNavigation li a:hover{
+  list-style:none;
+  display:block;
+  position:absolute;
+  top:0;
+  left:0px;
+  height:24px;
+  line-height:24px;
+  width:100%;  
+  text-align:center;
+  color:#333; 
+  font-size:11px;
+  text-shadow:#e8e8e8 0 1px 0;
+  -moz-box-shadow:inset 0 1px 1px #888;
+  -webkit-box-shadow:inset 0 1px 1px #888;
+  box-shadow:inset 0 1px 1px #888;
+  } 
+.openTripNavigation li.selected{
+  background:#e1e1e1;
+  background:-webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#d1d1d1));
+  background:-moz-linear-gradient(top,  #e1e1e1,  #d1d1d1);
+  }
+.openTripNavigation li.selected a{
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;  
+  } 
+.openTripNavigation li a:focus{outline:none;}
+
+.content{
+  width: 100%;
+  height: 24em;
+  background:#e1e1e1;
+  background:-webkit-gradient(linear, left top, left bottom, from(#d1d1d1), to(#e1e1e1));
+  background:-moz-linear-gradient(top,  #d1d1d1,  #e1e1e1);
+}
+
+.listBillHeaderContainer{
+padding-top: 1em;
+padding-left: 1em;
+}
+
+.addBillFormContainer{
+  padding-top: 2em;
+  padding-left: 1em;
+  font-size: 0.7em;
+}
+
+.listBillHeader{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.addBillFormParticipantsContainer {
+	padding-top: 1em;
+  height: 25em;
+}
+
+.openTripHeaderLine {
+  text-align: center;
+}
+
+/*.openTripPageMenuButton {
+  width: 33%
+}*/
+.ownerFormContainer {
+  float: left;
+}
+
+/* .otherParticipantContainer  { */
+/*   float: left; */
+/* } */
+
+.ownerSelect{
+  width: 4.5em;
+}
+
+.amountInput {
+  width: 4em;
+}
+
+.saveBillButton {
+  float: right;
+  padding-right: 2em;
+  padding-bottom: 1em
+}
+
+.amountLabel{
+  padding-left: 1.9em;
+}
+
+.ownersContainer{
+  padding-left: 2.5em;
+}
+
+.ownerLabel{
+  padding-left: 0.8em;
+}
+
+.shareInput{
+  width: 4em;
+}
+
+.otherParticipantContainer{
+  float: right;
+  padding-right: 2em;
+}
+
+.addOtherButtonContainer{
+  
+}
+
+.othersContainer{
+/*   float: right; */
+  padding-left: 2.5em;
+}
+
+.othersLabel{
+  padding-left: 1em;
+}
+
+.shareLabel{
+  padding-left: 2.5em;
+}
+
+.otherSelect{
+	width: 4.5em;
+}
+
+#currentStatusContainer{
+	padding-top: 1.5em;
+}
+
+.currentStatusTable{
+  width: 90%;
+  margin-left: 10%;
+}
+
+.currentStatusTableHeader{
+	padding: 1em 0;
+/*   padding-bottom: 1em; */
+}
+
+.balanceColumn{
+  text-align: center;
+}
+
+.currentStatusTableRow{
+	height: 2em;
+}

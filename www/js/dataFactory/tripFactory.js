@@ -6,12 +6,13 @@ trip.factory('tripFactory', function(){
     var getParticipants = function(participantList){
         var participants = [];
         for(var i = 0; i < participantList.length; i++){
-            participants.push(participantList[i].name);
+            participants.push({name: participantList[i].name, balance: 0});
         }
         return participants;
     };
     
     factory.createNewTripFromForm = function(form){
+        console.log(form);
         var trip = {
             name: form.tripName.value,
             participants: getParticipants(form.participantList),

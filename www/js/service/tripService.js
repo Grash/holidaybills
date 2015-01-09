@@ -11,9 +11,9 @@
                                                trip.id = lastId;
                                                trip.bills = [];
                                                tripService.tripList.push(trip);
+//                                               tripService.tripList[trip.id]=trip;
                                                console.log("FINAL ID: ", trip.id);
                                                scope.tripId = trip.id;
-                                               console.log("New ID:", scope.tripId, scope);
                                            }); 
                                          });
       };
@@ -27,23 +27,27 @@
           for(var i = 0; i < tripService.tripList.length; i++){
               names.push(tripService.tripList.name);
           }
-//          console.log("trip names", names);
           return names;
       }
       
       tripService.tripNameIsUnique = function(tripName){
           for(var i = 0; i < tripService.tripList.length; i++){
               if(tripService.tripList[i].name == tripName){
-//                  console.log("SAME");
                   return false;
               }
           }
-//          console.log("UNIQUE");
           return true;
       };
       
       tripService.getTripById = function(id){
-          return tripService.tripList[id];
+          var trip = null;
+          for(var i = 0; i < tripService.tripList.length; i++){
+              if(tripService.tripList[i].id == id){
+                  trip = tripService.tripList[i];
+                  break;
+              }
+          }
+          return trip;
       };
       
       

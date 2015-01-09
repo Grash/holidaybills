@@ -1,7 +1,30 @@
   <div>
-  <h2 id="openTripHeader" class="openTripHeaderLine">OPEN TRIP</h2>
+  <h2 id="openTripHeader" class="openTripHeaderLine">{{openTrip.trip.name}}</h2>
   
-    <button ng-click="openTrip.testDb()">Test Db</button>
+  <nav class="openTripNavigation"> 
+    <ul>
+        <li id="tab1" ng-class="{selected : openTrip.tab == 0}" ng-click="openTrip.selectTab(0)"><a>Add New Bill</a></li>
+        <li id="tab2" ng-class="{selected : openTrip.tab == 1}" ng-click="openTrip.selectTab(1)"><a>Check Bills</a></li>
+        <li id="tab3" ng-class="{selected : openTrip.tab == 2}" ng-click="openTrip.selectTab(2)"><a>Current Trip Status</a></li>
+<!--         <li id="tab4" ng-class="{selected : openTrip.tab == 3}" ng-click="openTrip.selectTab(3)"><a>Tab 4</a></li>   -->
+    </ul>
+  </nav>
+  <div class="content">
+    <div ng-show="openTrip.tab == 0">
+      <add-bill-form></add-bill-form>
+    </div>
+    <div ng-show="openTrip.tab == 1">
+      <list-bills></list-bills>
+    </div>
+    <div ng-show="openTrip.tab == 2">
+      <current-status></current-status>
+    </div>
+    <div ng-show="openTrip.tab == 3">
+      <span>OPEN BILL</span>
+      <open-bill></open-bill>
+    </div>
+  </div>
+<!--     <button ng-click="openTrip.testDb()">Test Db</button> -->
 <!--   <div id="pageMenu"> -->
 <!--     <div class="openTripPageMenuButton"> -->
 <!--       <button ng-click="openTrip.changeSubPage(0)">Add new bill</button> -->

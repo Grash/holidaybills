@@ -1,0 +1,110 @@
+@CHARSET "ISO-8859-1";
+
+.cardContainer{
+/*  margin: 1em; */
+}
+
+.availableTripCard{
+  padding: 0.5em;
+  float: left;
+  margin: 1em 0.75em 1em 0.75em;
+  border: 1px solid #000000;
+/*   background: url("../img/test.jpg"); */
+  width: 8em;
+  height: 12em;
+
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+/*   -webkit-filter: grayscale(100%); */
+}
+
+.cardContainer h2{
+  position: relative;
+  top: 100px;
+  left: 2em;
+  width: 30%;
+  z-index: 10;
+}
+
+/*.cardContainer span{
+  color: blue;
+  font: bold 24px/45px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  
+  position: relative;
+  top: 100px;
+  left: 2em;
+  width: 30%;
+  z-index: 10;
+}*/
+
+.firstCard{
+  clear: left;
+}
+
+.cardImg{
+  /*width: 8em;
+  height: 12em;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;*/
+  -webkit-filter: grayscale(100%);
+  background: url("../img/test.jpg");
+  background-size: cover;
+/*   filter: url(#grayscale); */
+  
+/*   z-index: 0; */
+}
+
+.cardImg.cardImg_active {
+  -webkit-filter: none;
+  -webkit-transform:scale(1.1); /* Safari and Chrome */
+    -moz-transform:scale(1.1); /* Firefox */
+    -ms-transform:scale(1.1); /* IE 9 */
+    -o-transform:scale(1.1); /* Opera */
+     transform:scale(1.1);
+/*   filter: none; */
+}
+
+.tripText{
+  opacity: 1;
+  width: 100%;
+  text-align: center;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.tripName{
+  font-size: 1.5em;
+}
+
+.tripOpenButton{
+  position: relative;
+  top: 4em;
+}
+
+.tripText.hideCardText{
+  opacity: 0;
+}
+
+.emptySlot{
+  position: relative;
+  top: 1.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.carouselUl{
+  list-style-type: none;
+}

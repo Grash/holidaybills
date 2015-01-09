@@ -1,0 +1,11 @@
+<div id="listBillsContainer">
+  <div class="listBillHeaderContainer">
+    <span class="listBillHeader">Bills:</span>
+  </div>
+  
+  <ul class="billList">
+    <li ng-repeat="bill in trip.bills">
+      <span ng-click="openBill(bill.name)">{{bill.name}}</span>
+    </li>
+  </ul>
+</div>

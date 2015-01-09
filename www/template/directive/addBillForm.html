@@ -1,0 +1,39 @@
+<div id="addBillFormContainer" class="addBillFormContainer">
+<!--   <h3>ADD BILL</h3> -->
+<!--   <div> -->
+<!--     <span>Amount: <input></input></span> -->
+<!--   </div> -->
+  <div>
+    <span>Bill name: <input ng-model="bill.name" class="billNameInput"></input></span>
+  </div>
+  <div class="addBillFormParticipantsContainer">
+    <div class="ownerFormContainer">
+      <div class="ownersContainer">
+        <span class="ownerLabel">Owner(s)</span><span class="amountLabel">Amount</span><br/>
+        <div ng-repeat="owner in owners">
+          <select ng-model="owner.name" actual-select="{{owner.name}} {{owner.id}}" ng-options="o as o for o in owner.optionList" class="ownerSelect"></select>
+          <input ng-model="owner.amount" class="amountInput"></input><br>
+        </div>
+      </div>
+      <button id="addOwnerButton" ng-click="addOwner()">+</button>
+    </div>
+    <div class="otherParticipantContainer">
+      <div class="othersContainer">
+        <span class="othersLabel">Other(s)</span><span class="shareLabel">Share</span><br/>
+        <div ng-repeat="other in others">
+          <select ng-model="other.name" actual-select="{{other.name}} {{other.id}}" ng-options="o for o in other.optionList" class="otherSelect"></select>
+          <input ng-model="other.share" class="shareInput"></input><br>
+        </div>
+      </div>
+<!--       <div class="addOtherButtonContainer"> -->
+        <button id="addOtherButton" ng-click="addOther()" class="addOtherButtonClass">+</button>
+<!--       </div> -->
+    </div>
+  </div>
+  <br/>
+  <div>
+    <div id="formActions" class="saveBillButton">
+      <button id="saveButton" ng-click="saveBill()">Save</button>
+    </div>
+  </div>
+</div>

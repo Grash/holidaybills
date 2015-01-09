@@ -78,7 +78,6 @@ var trip = angular.module('holidaybills');
               
               scope.tripId = 0;
               var unregister = scope.$watch(function(){return scope.tripId;}, function (newValue, oldValue) {
-                  console.log("NEW VALUE: ", newValue, oldValue);
                   if(newValue != undefined && newValue != oldValue){
                       unregister();
                       $location.url("/trip/"+newValue);
@@ -86,7 +85,6 @@ var trip = angular.module('holidaybills');
               });
               
               scope.saveTrip = function() {
-                  console.log("tripid: ", scope.tripId);
                   resetFormErrors(scope.form);
                   if(isValid(scope.form)){
                       var trip = tripFactory.createNewTripFromForm(scope.form);

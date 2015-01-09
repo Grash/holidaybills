@@ -1,0 +1,13 @@
+<div id="currentStatusContainer">
+<!--   <h3>CURRENT STATUS</h3> -->
+  <table class="currentStatusTable">
+    <tr>
+      <th class="currentStatusTableHeader">NAME</th>
+      <th class="currentStatusTableHeader">BALANCE</th>
+    </tr>
+    <tr ng-repeat="participant in participants">
+      <td class="nameColumn">{{participant.name}}</td>
+      <td class="balanceColumn">{{participant.balance}}</td>
+    </tr>
+  </table>
+</div>

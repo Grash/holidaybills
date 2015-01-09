@@ -84,7 +84,7 @@
      }
 
      function successCB() {
-         //alert("success!");
+         console.log("success!");
      }
      
      databaseService.initDatabase = function(){
@@ -104,6 +104,33 @@
 //         } else {
 //             return 0;
 //         }
+     };
+     
+     databaseService.getTrips = function(id, trips){
+         db.transaction(function(tx){
+             tx.executeSql('SELECT id, name FROM TRIP',
+                     function(tx, results){
+//                         var len = results.rows.length;
+                         var trip = {};
+                         for(var i = 0; i < results.rows.length; i++)
+                         {
+                             trip.id = results.rows.item(i)['id'];
+                             trip.name = results.rows.item(i)['name'];
+                             trips.push(trip);
+                         }
+                         for(var j = 0; j < trips.length; j++){
+                             tx.executeSql('SELECT name FROM PERSON WHERE tripId=?',
+                                     [trips[j].id],
+                                     function(tx, results){
+                                         var len = results.rows.length;
+                                         var parts = [];
+                                         for(var i = 0; i < results.rows.length; i++){
+                                             parts.push(results.rows.item(i)['name']);
+                                         }
+                                     });
+                         }
+                     });
+         }, errorCB, successCB);
      };
 
      

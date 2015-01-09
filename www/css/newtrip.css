@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+#newTripFormContainer{
+  padding-left: 5%;
+}
+
+.tripNameContainer{
+  padding-bottom: 5%;
+}
+
+.participantHeader{
+  padding-bottom: 5%;
+}
+
+.participantsListContainer{
+  padding-left: 8%;
+}
+
+.participantName{
+  width: 50%;
+}
+
+#newTripHeader{
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+#tripForm{
+  height: 24em;
+}
+
+#newTripFormActions{
+  height: 4em;
+}
+
+#newTripSaveButton{
+  position: absolute;
+/*  top: 92%; */
+  left: 75%;
+  width: 5em;
+  height: 2em;
+  font-size: 14px;
+  margin-top: 1em;
+}

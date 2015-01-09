@@ -42,13 +42,10 @@ var trip = angular.module('holidaybills');
           templateUrl: 'template/directive/tripLoadingCard.html',
           link: function postLink(scope, element, attr) {
               scope.emptySlot = !(typeof scope.card === 'object');
-//              console.log("Part", scope.card.participants);
-//              console.log("CARD", scope.card);
               if(attr.firstcard != null && attr.firstcard == "true"){
                   element.find('.availableTripCard').addClass('firstCard');
               }
               scope.activeClass=false;
-//              console.log("DIRECTIVE");
               scope.cardSelect = function(){
                   var img = createImgElement(element);
                   if(img.isActiveCard()){
@@ -58,11 +55,9 @@ var trip = angular.module('holidaybills');
                       prevImg.resetCard();
                       img.activateCard();
                   }
-//                  console.log("TRIP CARD");
               };
               
               scope.openTrip = function(tripId){
-                  console.log("OpenTrip");
                   $location.path("/trip/"+scope.card.id);
               };
           }

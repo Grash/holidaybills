@@ -155,9 +155,9 @@ var trip = angular.module('holidaybills');
                   return items
               }
               
-              var isValid = function(bill){
-                  return true;
-              }
+//              var isValid = function(bill){
+//                  return true;
+//              }
               
               var removeUnnecessaryElements = function(elements){
                   var i = 0;
@@ -170,6 +170,24 @@ var trip = angular.module('holidaybills');
                   }
               };
               
+              var convertBillOwners = function(owners){
+                  var billOwners = [];
+                  for(var i = 0; i < owners.length; i++){
+                      var billOwner = {name: owners[i].name, amount: Number(owners[i].amount), share: Number(owners[i].share)};
+                      billOwners.push(billOwner);
+                  }
+                  return billOwners;
+              };
+              
+              var convertBillOthers = function(others){
+                  var billOthers = [];
+                  for(var i = 0; i < others.length; i++){
+                      var billOther = {name: others[i].name, share: Number(others[i].share)};
+                      billOthers.push(billOther);
+                  }
+                  return billOthers;
+              };
+              
               scope.saveBill = function(){
                   var sum = 0;
                   for(var i = 0; i < scope.owners.length; i++){
@@ -178,7 +196,7 @@ var trip = angular.module('holidaybills');
                       }
                   }
                   
-                  if(sum > 0 && isValid(scope.bill)){
+                  if(sum > 0 && billService.isValid(scope.bill)){
                       removeUnnecessaryElements(scope.owners);
                       removeUnnecessaryElements(scope.others);
                       partNumber = scope.owners.length + scope.others.length;
@@ -196,8 +214,8 @@ var trip = angular.module('holidaybills');
                       }
                       billService.setBalance(scope.trip.participants, scope.owners, scope.others, sum/partNumber);
                       scope.bill.sum = sum;
-                      scope.bill.owners = scope.owners;
-                      scope.bill.others = scope.others;
+                      scope.bill.owners = convertBillOwners(scope.owners);
+                      scope.bill.others = convertBillOthers(scope.others);
                       scope.trip.bills.push(scope.bill);
                       resetBill();
                       actualOptionList = copyOptionList(optionList);

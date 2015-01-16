@@ -26,8 +26,21 @@ trip.factory('billService', [ 'databaseService', function($location) {
                 }
             }
         }
-        
     };
+    
+    billService.isValid = function(bill){
+        console.log("Bill: ", bill);
+        var valid = true;
+        if(bill.name.length == 0){
+            valid = false;
+        }
+        if(valid){
+            console.log("Valid bill");
+        } else {
+            console.log("Invalid bill");
+        }
+        return valid;
+    }
     
     return billService;
 }]);

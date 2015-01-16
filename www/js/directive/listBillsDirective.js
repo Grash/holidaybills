@@ -6,7 +6,7 @@ var trip = angular.module('holidaybills');
           //scope: { },
           link: function(scope, element, attrs){
               scope.trip = scope.openTrip.trip;
-              console.log(scope.trip);
+              console.log("Trip", scope.trip);
               
               scope.openBill = function(billName){
                   scope.activeBill = scope.trip.getBillByName(billName);

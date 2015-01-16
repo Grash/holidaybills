@@ -48,6 +48,10 @@
   clear: left;
 }
 
+.tripCard{
+/*   height: 5em; */
+}
+
 .cardImg{
   /*width: 8em;
   height: 12em;
@@ -87,11 +91,14 @@
 
 .tripName{
   font-size: 1.5em;
+  -webkit-margin-after: 0.5em;
+/*   -wekit-margin-before: 0em; */
 }
 
 .tripOpenButton{
-  position: relative;
-  top: 4em;
+  position: absolute;
+  top: 13em;
+  right: 3.5em;
 }
 
 .tripText.hideCardText{

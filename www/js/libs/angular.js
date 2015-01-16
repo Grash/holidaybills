@@ -20525,7 +20525,9 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
   this.$setTouched = function() {
     ctrl.$touched = true;
     ctrl.$untouched = false;
-    $animate.setClass($element, TOUCHED_CLASS, UNTOUCHED_CLASS);
+    if($animate.setClass != undefined){
+        $animate.setClass($element, TOUCHED_CLASS, UNTOUCHED_CLASS);
+    }
   };
 
   /**

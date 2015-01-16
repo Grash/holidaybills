@@ -14,6 +14,7 @@ define([
 //	'../directive/openBillDirective',
     '../directive/currentStatusDirective',
     '../service/tripService',
+    '../service/billService',
     '../service/databaseService',
     '../service/validator',
     '../dataFactory/tripFactory'

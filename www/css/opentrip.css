@@ -85,7 +85,7 @@ padding-left: 1em;
 }
 
 .addBillFormContainer{
-  padding-top: 2em;
+  padding-top: 1em;
   padding-left: 1em;
   font-size: 0.7em;
 }
@@ -109,7 +109,7 @@ padding-left: 1em;
 }*/
 .ownerFormContainer {
 /*   float: left; */
-  height: 50%;
+  height: 55%;
 }
 
 /* .otherParticipantContainer  { */
@@ -117,28 +117,33 @@ padding-left: 1em;
 /* } */
 
 .ownerSelect{
-  width: 4.5em;
+  width: 8em;
 }
 
 .amountInput {
-  width: 3.2em;
+  width: 5em;
 }
 
 .ownerShareLabel{
-	padding-left: 1.5em;
+	padding-left: 3.5em;
 }
 
 .saveBillButton {
   float: right;
   padding-right: 2em;
-  padding-bottom: 1em
+  padding-bottom: 1em;
+  padding-top: 2em;
 }
 
 .amountLabel{
-  padding-left: 1.6em;
+  padding-left: 5em;
 }
 
 .ownersContainer{
+  overflow-y: auto;
+}
+
+.ownersInputContainer{
   padding-left: 2.5em;
 }
 
@@ -146,20 +151,25 @@ padding-left: 1em;
 	text-align: center;
   font-size: 1.2em;
   font-weight: bold;
+  padding-bottom: 0.5em;
 }
 
 .ownerNameLabel{
-  padding-left: 0.8em;
+  padding-left: 6.5em;
 }
 
 .shareInput{
-  width: 3.2em;
+  width: 5em;
 }
 
 .otherParticipantContainer{
 /*   float: right; */
   height: 50%;
   padding-right: 1em;
+}
+
+.ownersScrollablecontainer{
+	heigth: 100%;
 }
 
 .addOtherButtonContainer{
@@ -175,18 +185,19 @@ padding-left: 1em;
 	text-align: center;
 	font-size: 1.2em;
 	font-weight: bold;
+	padding-bottom: 0.8em;
 }
 
 .othersNameLabel{
-  padding-left: 1em;
+  padding-left: 4em;
 }
 
 .shareLabel{
-  padding-left: 2.1em;
+  padding-left: 5em;
 }
 
 .otherSelect{
-	width: 4.5em;
+	width: 8em;
 }
 
 #currentStatusContainer{

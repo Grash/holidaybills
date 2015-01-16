@@ -11,16 +11,21 @@
       <div class="ownerLabel"><span>Owner(s)</span></div>
       <div class="ownersContainer">
         <span class="ownerNameLabel">Name</span><span class="amountLabel">Amount</span><span class="ownerShareLabel">Share</span><br/>
-        <div ng-repeat="owner in owners">
+        <div class="ownersScrollablecontainer">
+        <div ng-repeat="owner in owners" class="ownersInputContainer">
           <select ng-model="owner.name" actual-select="{{owner.name}} {{owner.id}}" ng-options="o as o for o in owner.optionList" class="ownerSelect"></select>
           <input ng-model="owner.amount" class="amountInput"></input>
           <input ng-model="owner.share" class="shareInput"></input><br>
         </div>
+          <button id="addOwnerButton" ng-click="addOwner()">+</button>
+        </div>
       </div>
-      <button id="addOwnerButton" ng-click="addOwner()">+</button>
+      
     </div>
     <div class="otherParticipantContainer">
-      <span class="othersLabel">Other(s)</span>
+      <div class="othersLabel">
+        <span>Other(s)</span>
+      </div>
       <div class="othersContainer">
         <span class="othersNameLabel">Name</span><span class="shareLabel">Share</span><br/>
         <div ng-repeat="other in others">

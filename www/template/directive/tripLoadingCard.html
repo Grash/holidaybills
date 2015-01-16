@@ -1,33 +1,22 @@
  <div class="cardContainer">
       <div class="availableTripCard cardImg" ng-click="cardSelect()">
         <div class="tripText hideCardText">
-          <div ng-show="!emptySlot">
-            <p class="tripName">{{card.tripName}}</p>
-            <div ng-repeat="participant in card.participants">
-              <span>{{participant}}</span>
+          <div ng-show="!emptySlot" class="tripCard">
+            <div>
+              <p class="tripName">{{card.tripName}}</p>
+              <div ng-repeat="participant in card.participants">
+                <span>{{participant}}</span>
+              </div>
             </div>
-            <button class="tripOpenButton" ng-click="openTrip()">Open</button>
+
+              <button class="tripOpenButton" ng-click="openTrip()">Open</button>
+
           </div>
           <div ng-show="emptySlot" class="emptySlot">
             <p>EMPTY</p>
             <p>SLOT</p>
           </div>
-          
-          
         </div>
-        
-        
-<!--              <svg width="8em" height="12em" version="1.1" -->
-<!--                xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink"> -->
-<!--                <filter id="grayscale"> -->
-<!--                  <feColorMatrix type="saturate" values="0"/> -->
-<!--                </filter> -->
-<!--                 <image xlink:href="img/test.jpg" x="0" y="0" height="100%" width="100%" class="cardImg" ng-click="cardSelect()"/> -->
-<!--               </svg> -->
-<!--         <img alt="asd" src="img/test.jpg" class="cardImg" ng-click="cardSelect()"> -->
       </div>
-<!--       <h2> -->
-<!--       <span>ASDASDASD</span> -->
-<!--       </h2> -->
     
 </div>

@@ -33,3 +33,7 @@ body {
 	margin-top: 3em;
 	font-weight: bold;
 }
+
+.noselect{
+  cursor: default;
+}

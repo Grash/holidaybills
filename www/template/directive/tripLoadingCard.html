@@ -3,14 +3,12 @@
         <div class="tripText hideCardText">
           <div ng-show="!emptySlot" class="tripCard">
             <div>
-              <p class="tripName">{{card.tripName}}</p>
+              <p class="tripName noselect">{{card.tripName}}</p>
               <div ng-repeat="participant in card.participants">
-                <span>{{participant}}</span>
+                <span class="noselect">{{participant}}</span>
               </div>
             </div>
-
-              <button class="tripOpenButton" ng-click="openTrip()">Open</button>
-
+            <button class="tripOpenButton" ng-click="openTrip()">Open</button>
           </div>
           <div ng-show="emptySlot" class="emptySlot">
             <p>EMPTY</p>

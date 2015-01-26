@@ -9,6 +9,22 @@ var trip = angular.module('holidaybills');
           },
           link: function(scope, element, attrs){
               scope.trip = scope.$parent.openTrip.trip;
+              scope.error = {
+                      billName: {
+                          empty: false
+                      },
+                      summary: {
+                          invalid: false
+                      },
+                      errortext: "",
+                      resetErrors: function(){
+                          this.billName.empty = false;
+                          this.summary.invalid = false;
+                      }
+              };
+//              scope.error.resetErrors = function(){
+//                  console.log(this);
+//              };
               var optionList = ["(none)"];
               var actualOptionList = [];
               
@@ -158,6 +174,15 @@ var trip = angular.module('holidaybills');
 //              var isValid = function(bill){
 //                  return true;
 //              }
+              var isValidNamelist = function(list, error){
+                  for(var i = 0; i < list.length; i++){
+                      if(list[i].name == "(none)" || list[i].name == ""){
+                          error.errorText = "invalid name list";
+                          return false;
+                      }
+                  }
+                  return true;
+              }
               
               var removeUnnecessaryElements = function(elements){
                   var i = 0;
@@ -190,13 +215,22 @@ var trip = angular.module('holidaybills');
               
               scope.saveBill = function(){
                   var sum = 0;
+                  var shareSum = 0;
                   for(var i = 0; i < scope.owners.length; i++){
                       if(scope.owners[i].amount != ""){
                           sum += Number(scope.owners[i].amount);
+                      };
+                      if(scope.owners[i].share != ""){
+                          shareSum += Number(scope.owners[i].share);
+                      };
+                  }
+                  for(var j = 0; j < scope.others.length; j++){
+                      if(scope.others[j].share != ""){
+                          shareSum += Number(scope.others[j].share);
                       }
                   }
                   
-                  if(sum > 0 && billService.isValid(scope.bill)){
+                  if(isValidNamelist(scope.owners, scope.error) && isValidNamelist(scope.others, scope.error) && billService.isValid(scope.bill, sum, shareSum, scope.error)){
                       removeUnnecessaryElements(scope.owners);
                       removeUnnecessaryElements(scope.others);
                       partNumber = scope.owners.length + scope.others.length;
@@ -220,6 +254,8 @@ var trip = angular.module('holidaybills');
                       resetBill();
                       actualOptionList = copyOptionList(optionList);
                       scope.$parent.openTrip.selectTab(2);
+                  } else {
+                      alert("invalid bill: " + scope.error.errorText);
                   }
               };
           }

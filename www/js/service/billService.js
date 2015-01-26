@@ -28,11 +28,22 @@ trip.factory('billService', [ 'databaseService', function($location) {
         }
     };
     
-    billService.isValid = function(bill){
+    billService.isValid = function(bill, sum, shareSum, error){
         console.log("Bill: ", bill);
+        error.resetErrors();
         var valid = true;
-        if(bill.name.length == 0){
+        if(sum <= 0){
+            error.errorText = "Negativ or zero amount";
             valid = false;
+        }
+        if(valid && shareSum > sum){
+            error.errorText = "Share is bigger than the amount";
+            valid = false;
+        }
+        if(valid && bill.name.length == 0){
+            valid = false;
+            error.billName.empty = true;
+            error.errorText = "Bill name is missing";
         }
         if(valid){
             console.log("Valid bill");

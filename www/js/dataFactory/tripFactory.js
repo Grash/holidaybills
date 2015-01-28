@@ -6,7 +6,7 @@ trip.factory('tripFactory', function(){
     var getParticipants = function(participantList){
         var participants = [];
         for(var i = 0; i < participantList.length; i++){
-            participants.push({name: participantList[i].name, balance: 0});
+            participants.push({name: participantList[i].name, balance: 0, id: 0});
         }
         return participants;
     };

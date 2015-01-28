@@ -10,13 +10,19 @@
                                            scope.$apply(function(){
                                                trip.id = lastId;
                                                trip.bills = [];
+                                               console.log("Trip Participants: ", trip.participants);
                                                tripService.tripList.push(trip);
 //                                               tripService.tripList[trip.id]=trip;
                                                console.log("FINAL ID: ", trip.id);
                                                scope.tripId = trip.id;
-                                           }); 
+                                           });
                                          });
       };
+      
+      tripService.saveBill = function(tripId, bill, callBack){
+//          console.log(trip);
+          databaseService.saveBill(tripId, bill, callBack);
+      }
       
       tripService.getTrips = function() {
           return tripService.tripList;

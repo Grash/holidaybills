@@ -195,10 +195,21 @@ var trip = angular.module('holidaybills');
                   }
               };
               
+              var getParticipantId = function(name){
+                  var id = 0;
+                  for(var i = 0; i < scope.trip.participants.length; i++){
+                      if(scope.trip.participants[i].name == name){
+                          id = scope.trip.participants[i].id;
+                          break;
+                      }
+                  }
+                  return id;
+              }
+              
               var convertBillOwners = function(owners){
                   var billOwners = [];
                   for(var i = 0; i < owners.length; i++){
-                      var billOwner = {name: owners[i].name, amount: Number(owners[i].amount), share: Number(owners[i].share)};
+                      var billOwner = {name: owners[i].name, amount: Number(owners[i].amount), share: Number(owners[i].share), id: getParticipantId(owners[i].name)};
                       billOwners.push(billOwner);
                   }
                   return billOwners;
@@ -207,7 +218,7 @@ var trip = angular.module('holidaybills');
               var convertBillOthers = function(others){
                   var billOthers = [];
                   for(var i = 0; i < others.length; i++){
-                      var billOther = {name: others[i].name, share: Number(others[i].share)};
+                      var billOther = {name: others[i].name, share: Number(others[i].share), id: getParticipantId(others[i].name)};
                       billOthers.push(billOther);
                   }
                   return billOthers;
@@ -251,9 +262,15 @@ var trip = angular.module('holidaybills');
                       scope.bill.owners = convertBillOwners(scope.owners);
                       scope.bill.others = convertBillOthers(scope.others);
                       scope.trip.bills.push(scope.bill);
-                      resetBill();
-                      actualOptionList = copyOptionList(optionList);
-                      scope.$parent.openTrip.selectTab(2);
+                      tripService.saveBill(scope.trip.id, scope.bill, function(){
+                                                                      scope.$apply(function(){
+                                                                          console.log("BILL SAVED");
+                                                                          resetBill();
+                                                                          actualOptionList = copyOptionList(optionList);
+                                                                          scope.$parent.openTrip.selectTab(2);
+                                                                      });
+                                                                   });
+                      
                   } else {
                       alert("invalid bill: " + scope.error.errorText);
                   }

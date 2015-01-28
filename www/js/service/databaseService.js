@@ -9,7 +9,7 @@
           tx.executeSql('CREATE TABLE IF NOT EXISTS TRIP (id INTEGER PRIMARY KEY ASC, name)');
           tx.executeSql('CREATE TABLE IF NOT EXISTS PERSON (id INTEGER PRIMARY KEY ASC, name, tripId)');
           tx.executeSql('CREATE TABLE IF NOT EXISTS BILL (id INTEGER PRIMARY KEY ASC, tripId, name)');
-          tx.executeSql('CREATE TABLE IF NOT EXISTS BILL_PARTICIPANTS (id INTEGER PRIMARY KEY ASC, billId, personId)');
+          tx.executeSql('CREATE TABLE IF NOT EXISTS BILL_PARTICIPANTS (id INTEGER PRIMARY KEY ASC, billId, personId, type, amount, share)');
 //          tx.executeSql('INSERT INTO TEST (data) VALUES ("First row1")');
 //          tx.executeSql('INSERT INTO TEST (data) VALUES ("Second row1")');
       }
@@ -41,10 +41,15 @@
       
       function saveParticipants(participants, lastId, callback){
           var transactionSuccess = false;
+          var partIds = [];
           db.transaction(function(tx){
               for(var i = 0; i < participants.length; i++){
                   tx.executeSql('INSERT INTO PERSON (tripId, name) VALUES (?,?)',
-                          [lastId, participants[i]]);
+                          [lastId, participants[i]],
+                          function(tx, results){
+                              partIds.push(results.insertId);
+                              console.log("Part: ", partIds);
+                          });
               }
           }
           , function(e) {
@@ -53,14 +58,59 @@
           }
           , function() {
               transactionSuccess = true;
-              console.log("SAVE PARTICIPANTS SUCCESSFULL");
+              for(var i = 0; i < participants.length; i++){
+                  participants[i].id = partIds[i];
+              }
               callback(lastId);
               return transactionSuccess;
               
           });
           console.log("return success");
           return transactionSuccess;
-      }
+      };
+      
+      function saveBill(tripId, bill, callback) {
+          var lastInsertId = 0;
+          lastInsertId = db.transaction(function(tx){
+                  tx.executeSql('INSERT INTO BILL (tripId, name) VALUES (?,?)',
+                          [tripId, bill.name],
+                          function(tx, results){
+                              lastInsertId = results.insertId;
+                              saveBillParticipants(bill, lastInsertId, callback);
+                          });
+              }
+              , function(e) {
+                  return console.log("ERROR: " + e.message);
+              }, function() {
+                  return lastInsertId;
+              });
+      };
+      
+      function saveBillParticipants(bill, lastId, callback){
+          var transactionSuccess = false;
+          db.transaction(function(tx){
+              for(var i = 0; i < bill.owners.length; i++){
+                  tx.executeSql('INSERT INTO BILL_PARTICIPANTS (billId, personId, type, amount, share) VALUES (?,?,?,?,?)',
+                          [lastId, bill.owners[i].id, "owner", bill.owners[i].amount, bill.owners[i].share]);
+              }
+              for(var j = 0; j < bill.others.length; j++){
+                  tx.executeSql('INSERT INTO BILL_PARTICIPANTS (billId, personId, type, amount, share) VALUES (?,?,?,?,?)',
+                          [lastId, bill.others[j].id, "other", 0, bill.others[j].share]);
+              }
+          }
+          , function(e) {
+              transactionSuccess = false;
+              return console.log("ERROR: " + e.message);
+          }
+          , function() {
+              transactionSuccess = true;
+              callback();
+              return transactionSuccess;
+              
+          });
+          console.log("return success");
+          return transactionSuccess;
+      };
       
       function queryDB(tx) {
           tx.executeSql('SELECT * FROM TEST', [], querySuccess, errorCB);
@@ -97,13 +147,17 @@
      };
      
      databaseService.saveTrip = function(trip, returnFunction){
-         var lastId = saveTrip(trip.name, trip.participants, returnFunction);
+         saveTrip(trip.name, trip.participants, returnFunction);
          //var success = saveParticipants(trip.participants, lastId);
 //         if(success){
 //             return lastId;
 //         } else {
 //             return 0;
 //         }
+     };
+     
+     databaseService.saveBill = function(tripId, bill, callBack){
+         saveBill(tripId, bill, callBack);
      };
      
      databaseService.getTrips = function(id, trips){

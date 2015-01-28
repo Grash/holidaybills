@@ -19,11 +19,11 @@
       
       this.initMockData = function(){
           databaseService.resetDb();
-          var mockTrip = tripFactory.createNewMockTrip("Greece", [{name: "Andras", balance: 0}, {name: "Bela", balance: 0}, {name: "Geza", balance: 0}, {name: "Istvan", balance: 0}, {name: "Jozsi", balance: 0}]);
-          var mockTrip2 = tripFactory.createNewMockTrip("Italy", [{name: "Andras", balance: 0}, {name: "Bela", balance: 0}]);
+          var mockTrip = tripFactory.createNewMockTrip("Greece", [{name: "Andras", balance: 0, id: 0}, {name: "Bela", balance: 0, id: 0}, {name: "Geza", balance: 0, id: 0}, {name: "Istvan", balance: 0, id: 0}, {name: "Jozsi", balance: 0, id: 0}]);
+          var mockTrip2 = tripFactory.createNewMockTrip("Italy", [{name: "Andras", balance: 0, id: 0}, {name: "Bela", balance: 0, id: 0}]);
           
-          var id = tripService.registerTrip(mockTrip, $scope);
-         tripService.registerTrip(mockTrip2, $scope);
+          tripService.registerTrip(mockTrip, $scope);
+          tripService.registerTrip(mockTrip2, $scope);
           console.log("Mock data added");
       };
       
